@@ -1,0 +1,44 @@
+.navigate ul {
+    
+    list-style:none;
+    margin:0;
+    padding:0;
+    width:100%;
+    text-align: center;
+    
+ }
+ 
+ .navigate li {
+     display: inline-block;
+     margin:5px 20px 0 20px;
+ }
+ /* .nav-bar{
+     overflow: hidden;
+    
+     white-space: nowrap;
+   top: 0;
+   width: 100%;
+ } */
+ 
+ .navigate a {
+     text-decoration: none;
+     color: black;
+ }
+ 
+ .navigate a:hover,
+ .navigate a:active,
+ .navigate a.active
+ {
+     color: orangered;
+ }
+
+ li .temperature{
+    cursor: pointer;
+    
+ }
+
+ .icon{
+    margin-right: 5px;
+    width:40px;
+    height:40px;
+ }

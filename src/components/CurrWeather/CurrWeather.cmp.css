@@ -1,0 +1,24 @@
+.container{
+    /* background-color: aqua; */
+background-color: #b0e8f0;
+background-image: linear-gradient(62deg, #b0e8f0 0%, #229acd 100%);
+
+
+    max-width:1000px;
+    border-radius: 7px;
+    margin:0 auto;
+}
+.flex{
+    display: flex;
+}
+
+.justify-content{
+    justify-content: center;
+}
+
+.align-items{
+    align-items: center;
+}
+.flex-direction{
+    flex-direction: column;
+}

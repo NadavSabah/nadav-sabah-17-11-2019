@@ -1,0 +1,22 @@
+.single-favorite{
+    background-color: blue;
+    max-width: 250px;
+    border-radius: 7px;
+    margin:10px auto;
+
+}
+.flex{
+    display: flex;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.justify-content{
+    justify-content: center;
+}
+.flex-direction{
+    flex-direction: column;
+}
+.align-items{
+    align-items: center;
+}
