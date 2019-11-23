@@ -18,7 +18,7 @@ async function getAutoCompleteResult(userInput) {
 
   try {
     if (localStorage.getItem('_autoComplete_' + userInput) === null) {
-      let res = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${weatherApi}&q=${userInput}`)
+      let res = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${weatherApi}&q=${userInput}`)
       console.log('AXIOS')
       if (res.data.length) {
         res.data.forEach(suggest => {
@@ -44,7 +44,7 @@ async function getCityData(cityName = 'tel aviv') {
   try {
     if (localStorage.getItem(cityName + '_data') === null) {
       console.log('AXIOS')
-      let res = await axios.get(`http://dataservice.accuweather.com/locations/v1/search?q=${cityName}&apikey=${weatherApi}`)
+      let res = await axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${cityName}&apikey=${weatherApi}`)
       let cityData = res.data[0]
       localStorage.setItem(cityName + '_data', JSON.stringify(cityData))
       return cityData
@@ -69,7 +69,7 @@ async function getFiveDayCityWeather(cityKey = '215854') {
     if (localStorage.getItem(cityKey + '_weather') === null) {
       console.log('AXIOS')
 
-      let res = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${weatherApi}`)
+      let res = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${weatherApi}`)
       cityData = res.data
       localStorage.setItem(cityKey + '_weather', JSON.stringify(cityData))
       return cityData
@@ -90,7 +90,7 @@ async function getCurrentWeather(cityKey = '215854') {
   let cityData = null
   try {
     if (localStorage.getItem(cityKey + '_currWeather') === null) {
-      let res = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${weatherApi}`)
+      let res = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${weatherApi}`)
       cityData = res.data[0]
       localStorage.setItem(cityKey + '_currWeather', JSON.stringify(cityData))
 

@@ -6,6 +6,7 @@ export default {
 }
 
 
+
 function addToFavorite(cityToAdd, favorites) {
   // const isExist = checkIfFavoriteExist(cityToAdd.id, favorites)
   // if (!isExist) {
