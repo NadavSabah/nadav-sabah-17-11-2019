@@ -15,9 +15,6 @@ function App() {
       <Route path="/" exact component={HomePage} />
       <Route path="/Favorites" component={FavoritesPage} />
 
-
-      {/* <UserInput></UserInput> */}
-
     </Router>
   );
 }

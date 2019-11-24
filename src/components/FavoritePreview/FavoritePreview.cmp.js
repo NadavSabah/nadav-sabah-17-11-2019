@@ -5,6 +5,7 @@ import './FavoritePreview.cmp.css'
 import favoriteService from '../../services/favoritesService/favoritesService'
 import * as actionCreators from '../../store/actions/index'
 import Swal from 'sweetalert2'
+import Button from 'react-bootstrap/Button'
 
 
 const FavoritePreview = ({ favorite, favorites, deleteFavorite, setSelectedCity, history }) => {
@@ -22,7 +23,7 @@ const FavoritePreview = ({ favorite, favorites, deleteFavorite, setSelectedCity,
             cancelButtonText: 'No, keep it'
         }).then((result) => {
             if (result.value) {
-                deleteFavorite(favorite.id, favorites)
+                deleteFavorite(favorite, favorites)
                 Swal.fire(
                     'Deleted!',
                     `${favorite.cityName} is no longer in your favorites`,
@@ -46,16 +47,17 @@ const FavoritePreview = ({ favorite, favorites, deleteFavorite, setSelectedCity,
     return (
         <div>
 
-            <div onClick={backToHomePage} className="single-favorite flex justify-content flex-direction align-items flex-wrap">
+            <div onClick={backToHomePage} className="single-favorite">
                 <h2>{favorite.cityName},{favorite.countryName}</h2>
                 <div>{favorite.f}&deg;F|{favorite.c}&deg;C</div>
                 <h2>{favorite.desc}</h2>
                 <img
-                    src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0${favorite.icon}}-s.png`}
+                    src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${favorite.icon}}-s.png`}
                     alt=""
                 />
+                <Button onClick={handleDeleteFavorite} variant="light">X</Button>
 
-                <button onClick={handleDeleteFavorite}>X</button>
+
             </div>
         </div>
     )
@@ -68,8 +70,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        deleteFavorite: (id, favorites) => {
-            const newFavorites = favoriteService.deleteFavorite(id, favorites)
+        deleteFavorite: (favorite, favorites) => {
+            const newFavorites = favoriteService.deleteFavorite(favorite, favorites)
             dispatch(actionCreators.deleteFavorite(newFavorites))
         },
         setSelectedCity: (cityName) => {

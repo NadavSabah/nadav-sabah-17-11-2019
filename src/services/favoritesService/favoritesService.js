@@ -5,31 +5,14 @@ export default {
   loadFavorites
 }
 
-
-
 function addToFavorite(cityToAdd, favorites) {
-  // const isExist = checkIfFavoriteExist(cityToAdd.id, favorites)
-  // if (!isExist) {
-    favorites.push(cityToAdd)
-    localStorage.setItem('_favorites', JSON.stringify(favorites))
+  favorites.push(cityToAdd)
+  localStorage.setItem('_favorites', JSON.stringify(favorites))
 
-    return favorites
-  // }
-  // else {
-  //   deleteFavorite()
-  //   return false
-  // }
+  return favorites
 }
+function deleteFavorite({ id }, favorites) {
 
-
-// function checkIfFavoriteExist(cityToAddId, favorites) {
-//   const cityToAdd = favorites.find(city => {
-//     return city.id === cityToAddId
-//   })
-//   return cityToAdd
-// }
-
-function deleteFavorite({id}, favorites) {
   const index = favorites.findIndex(favorite => favorite.id === id)
   if (index !== -1) favorites.splice(index, 1)
   localStorage.setItem('_favorites', JSON.stringify(favorites))

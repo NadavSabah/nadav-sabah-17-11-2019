@@ -12,25 +12,14 @@
      display: inline-block;
      margin:5px 20px 0 20px;
  }
- /* .nav-bar{
-     overflow: hidden;
-    
-     white-space: nowrap;
-   top: 0;
-   width: 100%;
- } */
+
  
  .navigate a {
      text-decoration: none;
      color: black;
  }
  
- .navigate a:hover,
- .navigate a:active,
- .navigate a.active
- {
-     color: orangered;
- }
+ 
 
  li .temperature{
     cursor: pointer;
@@ -41,4 +30,10 @@
     margin-right: 5px;
     width:40px;
     height:40px;
+ }
+
+ .icon-favorites{
+    margin-right: 5px;
+    width:50px;
+    height:50px;
  }

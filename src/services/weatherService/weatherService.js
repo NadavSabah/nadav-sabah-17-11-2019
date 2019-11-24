@@ -5,10 +5,9 @@ export default {
   getCityData,
   getCurrentWeather,
   getAutoCompleteResult,
-  
+
 }
 const weatherApi = 'NDicdGE5FFxbjoGAHcb3iODqotL4xOpS'
-
 
 
 async function getAutoCompleteResult(userInput) {
@@ -19,7 +18,6 @@ async function getAutoCompleteResult(userInput) {
   try {
     if (localStorage.getItem('_autoComplete_' + userInput) === null) {
       let res = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${weatherApi}&q=${userInput}`)
-      console.log('AXIOS')
       if (res.data.length) {
         res.data.forEach(suggest => {
           autoResult.push({ id: suggest.Key, cityName: suggest.LocalizedName })
@@ -34,7 +32,6 @@ async function getAutoCompleteResult(userInput) {
     }
     return autoResult
   } catch (error) {
-    console.log('Error is ', error)
     throw error
   }
 }
@@ -43,17 +40,15 @@ async function getCityData(cityName = 'tel aviv') {
   let cityData = null
   try {
     if (localStorage.getItem(cityName + '_data') === null) {
-      console.log('AXIOS')
       let res = await axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${cityName}&apikey=${weatherApi}`)
       let cityData = res.data[0]
+      cityName = cityName.toLocaleLowerCase()
       localStorage.setItem(cityName + '_data', JSON.stringify(cityData))
       return cityData
     }
     else {
       cityData = localStorage.getItem(cityName + '_data')
       cityData = JSON.parse(cityData)
-
-      // console.log('this is the city key from the local storage', cityData)
       return cityData
     }
   } catch (error) {
@@ -66,43 +61,24 @@ async function getCityData(cityName = 'tel aviv') {
 async function getFiveDayCityWeather(cityKey = '215854') {
   let cityData = null
   try {
-    if (localStorage.getItem(cityKey + '_weather') === null) {
-      console.log('AXIOS')
 
-      let res = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${weatherApi}`)
-      cityData = res.data
-      localStorage.setItem(cityKey + '_weather', JSON.stringify(cityData))
-      return cityData
-    }
-    else {
-      cityData = localStorage.getItem(cityKey + '_weather')
-      cityData = JSON.parse(cityData)
+    let res = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${weatherApi}`)
+    cityData = res.data
+    return cityData
 
-      return cityData
-
-    }
   } catch (error) {
-    console.log('Error ', error)
     throw error
   }
 }
 async function getCurrentWeather(cityKey = '215854') {
   let cityData = null
   try {
-    if (localStorage.getItem(cityKey + '_currWeather') === null) {
-      let res = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${weatherApi}`)
-      cityData = res.data[0]
-      localStorage.setItem(cityKey + '_currWeather', JSON.stringify(cityData))
 
-      return cityData
-    }
-    else {
-      cityData = localStorage.getItem(cityKey + '_currWeather')
-      cityData = JSON.parse(cityData)
+    let res = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${weatherApi}`)
+    cityData = res.data[0]
+    localStorage.setItem(cityKey + '_currWeather', JSON.stringify(cityData))
 
-      return cityData
-
-    }
+    return cityData
 
   } catch (error) {
     throw error

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import FavoritePreview from '../../components/FavoritePreview/FavoritePreview.cmp'
 import './FavoritesPage.css'
 import favoritesService from '../../services/favoritesService/favoritesService';
 import * as actionCreators from '../../store/actions/index'
+import Swal from 'sweetalert2'
 
 
 
@@ -14,7 +15,11 @@ const FavoritesPage = ({ favorites, loadFavorites }) => {
                 await loadFavorites()
 
             } catch (error) {
-                console.log('Error is', error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Cant load favorie page right now, try again later'
+                })
             }
         }
 
@@ -24,12 +29,15 @@ const FavoritesPage = ({ favorites, loadFavorites }) => {
     return (
         <div className="favorites-container">
             <h1 className="fav-title">Your Favorites</h1>
-            {favorites.length
-                ? favorites.map(favorite => (
-                    <FavoritePreview key={favorite.id} favorite={favorite} />
-                ))
-                : <h3 className="fav-title">No favorites</h3>
-            }
+            <div className="flex justify-content align-items flex-wrap">
+
+                {favorites.length
+                    ? favorites.map(favorite => (
+                        <FavoritePreview key={favorite.id} favorite={favorite} />
+                    ))
+                    : <h3 className="fav-title">No favorites</h3>
+                }
+            </div>
         </div>
     )
 }

@@ -20,25 +20,8 @@ const rootReducer = combineReducers({
 })
 
 
-const myMiddleware = store => {
-    return next => {
-        return action => {
-            // console.log('[Middleware] Dispactching ', action);
-            // this will let the action continue to the reducer, though for that to succeed, we need to pass the action as an argument
-            const result = next(action)
-            // console.log('[Middleware next state: ', store.getState())
-            return result
-        }
-    }
-}
-
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(myMiddleware, thunk)));
-// ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware( thunk)));
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
-
-
-// const store = createStore(rootReducer, composeEnhancers(applyMiddleware(myMiddleware,thunk)));
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

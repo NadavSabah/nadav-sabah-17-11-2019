@@ -1,22 +1,10 @@
 .single-favorite{
-    background-color: blue;
-    max-width: 250px;
+    background-image: radial-gradient( circle farthest-corner at 84.6% 77.8%,  rgba(86,89,218,1) 0%, rgba(95,208,248,1) 90% );
+    width: 275px;
+    min-width: 225px;
+    height: 205px;
     border-radius: 7px;
-    margin:10px auto;
-
-}
-.flex{
-    display: flex;
-}
-.flex-wrap{
-    flex-wrap: wrap;
-}
-.justify-content{
-    justify-content: center;
-}
-.flex-direction{
-    flex-direction: column;
-}
-.align-items{
-    align-items: center;
+    margin:10px;
+    box-shadow: 8px 7px 12px -6px rgba(0,0,0,0.76);
+    text-align: center;
 }

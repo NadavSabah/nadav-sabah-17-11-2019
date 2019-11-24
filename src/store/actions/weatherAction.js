@@ -46,7 +46,7 @@ export const setSelectedCity = (cityName) => {
     }
 }
 
-export const toggleFahrenheit = (isFahrenheit) =>{
+export const toggleFahrenheit = (isFahrenheit) => {
     return {
         type: actionTypes.SET_TEMPERATURE_SCALE,
         data: isFahrenheit

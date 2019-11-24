@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import UserInput from '../../components/UserInput/UserInput.cmp'
 import MainForecast from '../../components/MainForecast/MainForecast.cmp'
 

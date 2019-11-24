@@ -6,9 +6,6 @@ import './UserInput.cmp.css'
 import Swal from 'sweetalert2'
 import Button from 'react-bootstrap/Button'
 
-
-
-
 const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getAutoCompleteResult }) => {
     const [cityName, setCityName] = useState('')
     const [renderAutoComplete, setrenderAutoComplete] = useState(null)
@@ -22,7 +19,7 @@ const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getA
 
             setrenderAutoComplete(
                 <ul className="autocomplete">
-                    {results.map(result => <li key={result.id} onClick={() => suggestSelected(result.cityName)}>{result.cityName}</li>)}
+                    {results.map(result => <li className="suggest" key={result.id} onClick={() => suggestSelected(result.cityName)}>{result.cityName}</li>)}
                 </ul>
             )
         }
@@ -32,24 +29,25 @@ const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getA
         }
     }
 
-    const suggestSelected = (suggest) => {
+    const suggestSelected = async (suggest) => {
         setCityName(suggest)
-        getCityData(suggest)
+        const cityKey = await getCityData(suggest)
+        await getFiveDayCityWeather(cityKey)
+        await getCurrentWeather(cityKey)
         setrenderAutoComplete(null)
     }
 
     const handleSubmit = async (event) => {
         let regexEnglishLetters = /^[a-zA-Z]+$/.test(cityName)
-
         if (regexEnglishLetters) {
-            try{
+            try {
                 event.preventDefault()
                 setrenderAutoComplete(null)
                 const cityKey = await getCityData(cityName)
                 await getFiveDayCityWeather(cityKey)
                 await getCurrentWeather(cityKey)
 
-            }catch (error) {console.log('the error is',error)}
+            } catch (error) { console.log('the error is', error) }
         }
         else {
             event.preventDefault()
@@ -75,7 +73,7 @@ const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getA
                         onChange={inputChangeHandler}
                         value={cityName}
                     />
-                   <Button variant="secondary" className="rounded-0">Search</Button>
+                    <Button type="submit" value="Send" variant="secondary" className="rounded-0">Search</Button>
                 </form>
                 {renderAutoComplete}
             </div>
@@ -99,6 +97,7 @@ const mapsDispatchToProps = dispatch => {
             return cityData.Key
 
         },
+
         getFiveDayCityWeather: async (cityKey) => {
             const cityData = await weatherService.getFiveDayCityWeather(cityKey)
             dispatch(actionCreators.getFiveDayCityWeather(cityData))
