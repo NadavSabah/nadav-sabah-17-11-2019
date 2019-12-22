@@ -9,7 +9,7 @@ import './MainForecast.cmp.css'
 import Swal from 'sweetalert2'
 
 const MainForecast = ({ getCityData, getFiveDayCityWeather, cityFiveDayWeather,
-    getCurrentWeather, cityData, currWeather, toggleFavorite, favoritesList, selectedCity, loadFavorites, isFahrenheit, deleteFavorite }) => {
+    getCurrentWeather, cityData, currWeather, toggleFavorite, favoritesList, selectedCity, loadFavorites, isFahrenheit }) => {
     const [isFavorite, setIsFavorite] = useState(false)
     useEffect(() => {
         async function getWeather() {
@@ -19,13 +19,13 @@ const MainForecast = ({ getCityData, getFiveDayCityWeather, cityFiveDayWeather,
                     await getCityData()
                     await getFiveDayCityWeather()
                     await getCurrentWeather()
-                    await loadFavorites()
+                    loadFavorites()
                 }
                 else {
                     await getCityData(selectedCity)
                     await getFiveDayCityWeather(cityData.Key)
                     await getCurrentWeather(cityData.Key)
-                    await loadFavorites()
+                    loadFavorites()
                 }
 
 

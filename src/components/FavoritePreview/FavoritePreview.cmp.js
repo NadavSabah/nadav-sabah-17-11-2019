@@ -51,10 +51,19 @@ const FavoritePreview = ({ favorite, favorites, deleteFavorite, setSelectedCity,
                 <h2>{favorite.cityName},{favorite.countryName}</h2>
                 <div>{favorite.f}&deg;F|{favorite.c}&deg;C</div>
                 <h2>{favorite.desc}</h2>
-                <img
-                    src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${favorite.icon}}-s.png`}
-                    alt=""
-                />
+                {favorite.icon > 9 ?
+                    <img
+                        src={`   `}
+                        alt=""
+                    />
+                    :
+                    <img
+                        src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0${favorite.icon}-s.png`}
+                        alt=""
+                    />
+                }
+                <br></br>
+
                 <Button onClick={handleDeleteFavorite} variant="light">X</Button>
 
 

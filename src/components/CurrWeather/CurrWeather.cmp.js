@@ -16,11 +16,17 @@ const CurrWeather = ({ currWeather, isFahrenheit }) => {
                     <h3>{currWeather.WeatherText}</h3>
                 </div>
             )}
-            <img
-                src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${currWeather.WeatherIcon}-s.png`}
-                alt=""
-            />
-
+            {currWeather.WeatherIcon > 9 ?
+           <img
+           src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${currWeather.WeatherIcon}-s.png`}
+           alt=""
+       />  
+       :
+       <img
+       src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0${currWeather.WeatherIcon}-s.png`}
+       alt=""
+   />
+        }
         </div>
     )
 }

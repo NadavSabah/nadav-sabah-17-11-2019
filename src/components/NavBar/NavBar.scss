@@ -1,0 +1,29 @@
+.navigate{
+
+ul{
+   list-style:none;
+   margin:0;
+   padding:0;
+   width:100%;
+   text-align: center;
+
+}
+li{
+   display: inline-block;
+   margin:5px 20px 0 20px;
+   cursor: pointer;
+}
+    
+ }
+
+ .icon{
+    margin-right: 5px;
+    width:40px;
+    height:40px;
+ }
+
+ .icon-favorites{
+    margin-right: 5px;
+    width:50px;
+    height:50px;
+ }

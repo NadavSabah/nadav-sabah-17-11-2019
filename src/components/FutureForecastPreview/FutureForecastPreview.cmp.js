@@ -9,13 +9,22 @@ const FutureForecastPreview = ({ dayForecast, isFahrenheit }) => {
         <div className="flex flex-direction align-items">
             <Card className="r" className="single-square">
 
-                <div className="flex flex-direction align-items">
+                <div className="flex flex-direction align-items ">
                     <Card.Header style={{ width: '100%', textAlign: 'center', }} >{moment(dayForecast.Date).format('dddd')}</Card.Header>
                     <h4>{moment(dayForecast.Date).format('DD/MM')}</h4>
-                    <img
-                        src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0${dayForecast.Day.Icon}-s.png`}
-                        alt=""
-                    />
+                    
+                    {dayForecast.Day.Icon > 9 ?
+                        <img
+                            src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${dayForecast.Day.Icon}-s.png`}
+                            alt=""
+                        />
+                        :
+                        <img
+                            src={`https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/0${dayForecast.Day.Icon}-s.png`}
+                            alt=""
+                        />
+                    }
+
                     <h5>{dayForecast.Day.IconPhrase}</h5>
 
                 </div>

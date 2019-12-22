@@ -21,24 +21,24 @@ button {
 }
 .autocomplete {
     width:100%;
-    border: 1 solid grey;
+    border: 1px solid grey; 
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 4px 1px rgba(0,0,0,.18);
     background-color: white;
-    border: 1px solid;  
-}
-.autocomplete li { 
+li { 
     list-style-type:none;
     text-align: left;
     cursor: pointer;
     transition-delay: 2s;
+&:hover{
+    background-color:black
+
+}
 }
 
 
-.suggest:hover  {
-    background-color: lightgray;
-    font-weight: bold;  
-    
-}   
+}
+
+
 
 
 @media only screen and (max-width: 650px) {

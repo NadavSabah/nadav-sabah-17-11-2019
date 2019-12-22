@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 })
 
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware( thunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

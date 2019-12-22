@@ -52,7 +52,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadFavorites: async () => {
             const favorites = await favoritesService.loadFavorites()
-            dispatch(actionCreators.loadFavorites(favorites))
+            dispatch(actionCreators.loadFavorites(favorites)) 
 
         }
     }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actions/index'
 import weatherService from '../../services/weatherService/weatherService'
-import './UserInput.cmp.css'
+import './UserInput.cmp.scss'
 import Swal from 'sweetalert2'
 import Button from 'react-bootstrap/Button'
 
@@ -18,9 +18,12 @@ const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getA
         if (results.length) {
 
             setrenderAutoComplete(
+                <div >
+
                 <ul className="autocomplete">
-                    {results.map(result => <li className="suggest" key={result.id} onClick={() => suggestSelected(result.cityName)}>{result.cityName}</li>)}
+                    {results.map(result => <li className="bol"  key={result.id} onClick={() => suggestSelected(result.cityName)}>{result.cityName}</li>)}
                 </ul>
+                </div>
             )
         }
         else {
@@ -62,7 +65,7 @@ const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getA
     }
     return (
 
-        <React.Fragment>
+        
             <div className="form-container">
 
                 <form className="form flex" onSubmit={handleSubmit}>
@@ -77,17 +80,17 @@ const UserInput = ({ getCityData, getFiveDayCityWeather, getCurrentWeather, getA
                 </form>
                 {renderAutoComplete}
             </div>
-        </React.Fragment>
+        
     )
 }
 
-const mapsStateToProps = state => {
-    return {
-        cityData: state.mainWeather.cityData,
-        cityFiveDayWeather: state.mainWeather.cityFiveDayWeather,
+// const mapsStateToProps = state => {
+//     return {
+//         cityData: state.mainWeather.cityData,
+//         cityFiveDayWeather: state.mainWeather.cityFiveDayWeather,
 
-    }
-}
+//     }
+// }
 const mapsDispatchToProps = dispatch => {
     return {
         getCityData: async (cityName) => {
@@ -116,4 +119,4 @@ const mapsDispatchToProps = dispatch => {
 
     }
 }
-export default connect(mapsStateToProps, mapsDispatchToProps)(UserInput)
+export default connect(null, mapsDispatchToProps)(UserInput)
